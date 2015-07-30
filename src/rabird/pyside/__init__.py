@@ -86,5 +86,10 @@ def import_uis():
         module_full_name = "%s.%s" % (outer_module.__name__, module_name)
         
         # Import the module
+        if module_name not in importlib.import_module(module_full_name).__dict__:
+            raise AttributeError("There do not have class '%s' in module '%s',"
+                " Please check the class name !"
+                 % (module_name, module_full_name))
+            
         outer_module.__dict__[module_name] = importlib.import_module(module_full_name).__dict__[module_name]
     
