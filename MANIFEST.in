@@ -1,6 +1,14 @@
 recursive-include src *
-include README.rst
-include LICENSE.txt
+include *.rst
+include *.txt
 include setup.cfg
+include rabird_bootstrap.py
+
 prune preprocessed
+
+global-exclude *.dll
 global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.so
+global-exclude *.bak
+global-exclude *.old
