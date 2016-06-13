@@ -8,4 +8,3 @@ import rabird.pyside.commands
 
 if __name__ == '__main__':
     sys.exit(rabird.pyside.commands.i18n_update())
-    
