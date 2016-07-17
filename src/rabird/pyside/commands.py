@@ -52,35 +52,38 @@ def i18n_update():
         all_ts_files.append(unix_normpath(ts_file))
 
     # Generate project file
-    project_file = io.open(project_file_name, "wb")
+    with io.open(project_file_name, "wb") as project_file:
 
-    content = "SOURCES = \\\n"
-    for py_file in all_py_files:
-        content += "\t%s \\\n" % py_file
-    content += "\n"
+        content = "SOURCES = \\\n"
+        for py_file in all_py_files:
+            content += "\t%s \\\n" % py_file
+        content += "\n"
 
-    content += "TRANSLATIONS = \\\n";
-    for ts_file in all_ts_files:
-        content += "\t%s \\\n" % ts_file;
-    content += "\n"
+        content += "TRANSLATIONS = \\\n";
+        for ts_file in all_ts_files:
+            content += "\t%s \\\n" % ts_file;
+        content += "\n"
 
-    content += "FORMS    = \\\n"
-    for ui_file in all_ui_files:
-        content += "\t%s \\\n" % ui_file
-    content += "\n"
-    project_file.write(content.encode('utf-8'))
-    project_file.close()
+        content += "FORMS    = \\\n"
+        for ui_file in all_ui_files:
+            content += "\t%s \\\n" % ui_file
+        content += "\n"
+        project_file.write(content.encode('utf-8'))
+        project_file.close()
 
-    # Really update i18n
-    pyside_dir = os.path.dirname(PySide.__file__)
-    if sys.platform == "win32":
-        pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate.exe")
-    else:
-        pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate")
-    if not os.path.exists(pyside_lupdate_path):
-        pyside_lupdate_path = "pyside-lupdate"
+        # Really update i18n
+        pyside_dir = os.path.dirname(PySide.__file__)
+        if sys.platform == "win32":
+            pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate.exe")
+        else:
+            pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate")
+        if not os.path.exists(pyside_lupdate_path):
+            pyside_lupdate_path = "pyside-lupdate"
 
-    i18n_update_command = "\"%s\" %s" % (
-        pyside_lupdate_path, project_file_name)
-    print(i18n_update_command)
-    os.system(i18n_update_command)
+        i18n_update_command = "\"%s\" %s" % (
+            pyside_lupdate_path, project_file_name)
+        print(i18n_update_command)
+        os.system(i18n_update_command)
+        
+    # After all we clear the temporary project file
+    os.remove(project_file_name)
