@@ -82,6 +82,8 @@ def i18n_update():
         pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate.exe")
     else:
         pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate")
+    if not os.path.exists(pyside_lupdate_path):
+        pyside_lupdate_path = "pyside-lupdate"
 
     i18n_update_command = "\"%s\" %s" % (
         pyside_lupdate_path, project_file_name)
