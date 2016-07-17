@@ -10,7 +10,7 @@ import glob
 import fnmatch
 import PySide
 import sys
-
+import io
 
 def unix_normpath(path):
     return os.path.normpath(path).replace("\\", "/")
@@ -57,23 +57,23 @@ def i18n_update():
             all_py_files.append(afile)
 
     # Generate project file
-    project_file = open(project_file_name, "wb")
+    project_file = io.open(project_file_name, "wb")
 
-    project_file.write("SOURCES = \\\n")
+    content = "SOURCES = \\\n"
     for py_file in all_py_files:
-        project_file.write("\t%s \\\n" % py_file)
-    project_file.write("\n")
+        content += "\t%s \\\n" % py_file
+    content += "\n"
 
-    project_file.write("TRANSLATIONS = \\\n")
+    content += "TRANSLATIONS = \\\n";
     for ts_file in all_ts_files:
-        project_file.write("\t%s \\\n" % ts_file)
-    project_file.write("\n")
+        content += "\t%s \\\n" % ts_file;
+    content += "\n"
 
-    project_file.write("FORMS    = \\\n")
+    content += "FORMS    = \\\n"
     for ui_file in all_ui_files:
-        project_file.write("\t%s \\\n" % ui_file)
-    project_file.write("\n")
-
+        content += "\t%s \\\n" % ui_file
+    content += "\n"
+    project_file.write(content.encode('utf-8'))
     project_file.close()
 
     # Really update i18n
