@@ -38,23 +38,18 @@ def i18n_update():
     # Get all translation files
     all_ts_files = []
 
+    default_ts_content = r"""<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS><TS version="1.1">
+</TS>
+"""
     for ts_file in glob.glob("./i18n/*.ts"):
+        if os.path.exists(ts_file):
+            statinfo = os.stat(ts_file)
+            if statinfo.st_size <= 0:
+                with io.open(ts_file, "wb") as afile:
+                    afile.write(default_ts_content.encode("utf-8"))
+
         all_ts_files.append(unix_normpath(ts_file))
-
-    # Get all translation files
-    all_ui_files = []
-
-    for root, dirs, files in os.walk(os.curdir):
-        for afile in files:
-            if not fnmatch.fnmatch(afile, "*.py"):
-                continue
-
-            # Skip generated Ui_*.py
-            if fnmatch.fnmatch(afile, "Ui_*.py"):
-                continue
-
-            afile = unix_normpath(os.path.join(root, afile))
-            all_py_files.append(afile)
 
     # Generate project file
     project_file = io.open(project_file_name, "wb")
