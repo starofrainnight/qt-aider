@@ -1,14 +1,9 @@
-recursive-include src *
 include *.rst
-include *.txt
-include setup.cfg
+include LICENSE
 include rabird_bootstrap.py
 
-prune preprocessed
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
 
-global-exclude *.dll
-global-exclude *.pyc
-global-exclude *.pyo
-global-exclude *.so
-global-exclude *.bak
-global-exclude *.old
+recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
