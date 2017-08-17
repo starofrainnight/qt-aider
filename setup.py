@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-from rabird_bootstrap import use_rabird
-use_rabird()
-
 import os
 import os.path
 import sys
@@ -22,6 +19,7 @@ long_description = (
 )
 
 install_requires = [
+    'rabird.core',
     'qtpy>=1.3.0',
 ]
 
