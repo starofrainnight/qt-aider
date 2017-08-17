@@ -1,14 +1,6 @@
 #!/usr/bin/env python
 
-import os
-import os.path
-import sys
-import shutil
-import logging
-import fnmatch
-import rabird.core.distutils
 from setuptools import setup, find_packages
-from distutils.command.install_scripts import install_scripts
 
 package_name = 'rabird.qt'
 
