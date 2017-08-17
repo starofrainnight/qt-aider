@@ -61,7 +61,7 @@ long_description = (
 
 setup(
     name=package_name,
-    version='.'.join(map(str, (0, 0, 6))),
+    version='0.0.6',
     author='Hong-She Liang',
     author_email='starofrainnight@gmail.com',
     url='https://github.com/starofrainnight/%s' % package_name,
