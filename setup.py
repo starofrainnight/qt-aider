@@ -47,7 +47,8 @@ package_name = 'rabird.qt'
 # Exclude the original source package, only accept the preprocessed package!
 packages = find_packages()
 
-our_requires = [
+install_requires = [
+    'qtpy>=1.3.0',
 ]
 
 long_description = (
@@ -76,7 +77,7 @@ setup(
             "Topic :: Software Development :: Libraries",
             "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    install_requires=our_requires,
+    install_requires=install_requires,
     # package_dir={'': source_dir},
     packages=packages,
     namespace_packages=[package_name.split(".")[0]],
