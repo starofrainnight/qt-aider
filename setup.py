@@ -42,7 +42,7 @@ class my_install_scripts(install_scripts):
             with open(shell_script_file_name, 'wt') as shell_script_file:
                 shell_script_file.write(shell_script_contents)
 
-package_name = 'rabird.pyside'
+package_name = 'rabird.qt'
 
 # Convert source to v2.x if we are using python 2.x.
 source_dir = rabird.core.distutils.preprocess_source()

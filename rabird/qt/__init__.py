@@ -8,8 +8,8 @@ import xml.etree.ElementTree as etree
 
 def auto_compile_uis(ui_dir):
     '''
-    Compile all UI's in specific directory if they are not compiled or 
-    changed.    
+    Compile all UI's in specific directory if they are not compiled or
+    changed.
     '''
     ui_paths = glob.glob(os.path.join(ui_dir, "*.ui"))
     for ui_path in ui_paths:
@@ -55,16 +55,16 @@ def import_uis():
     '''
     Import all UIs in directory where invoker's module stay.
 
-    Normally, this function will invoke in the module's __init__.py, for 
+    Normally, this function will invoke in the module's __init__.py, for
     ex:
 
     __init__.py:
 
     @code
-    import rabird.pyside
+    import rabird.qt
 
     # This method will import all UI's located in this module's directory.
-    rabird.pyside.import_uis()
+    rabird.qt.import_uis()
     @endcode
     '''
     suffixs = ["pyo", "pyc", "py"]

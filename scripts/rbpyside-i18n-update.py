@@ -4,7 +4,7 @@
 '''
 
 import sys
-import rabird.pyside.commands
+import rabird.qt.commands
 
 if __name__ == '__main__':
-    sys.exit(rabird.pyside.commands.i18n_update())
+    sys.exit(rabird.qt.commands.i18n_update())
