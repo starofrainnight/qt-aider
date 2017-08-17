@@ -44,9 +44,6 @@ class my_install_scripts(install_scripts):
 
 package_name = 'rabird.qt'
 
-# Exclude the original source package, only accept the preprocessed package!
-packages = find_packages()
-
 install_requires = [
     'qtpy>=1.3.0',
 ]
@@ -75,8 +72,7 @@ setup(
             "Topic :: Software Development :: Libraries",
     ],
     install_requires=install_requires,
-    # package_dir={'': source_dir},
-    packages=packages,
+    packages=find_packages(),
     namespace_packages=[package_name.split(".")[0]],
 
     # FIXME: I don't know why we can't use entry_points to install our script,
