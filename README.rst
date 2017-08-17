@@ -1,6 +1,5 @@
 rabird.qt
 ---------------
 
-This library is an extension library build on top of PySide.
+This library is an extension library build on top of Qt library.
 
-It provided a some features that help with my PySide programs.
