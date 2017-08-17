@@ -67,10 +67,11 @@ setup(
     url='https://github.com/starofrainnight/%s' % package_name,
     description='An extension library for PySide',
     long_description=long_description,
+    license="Apache Software License",
     classifiers=[
                 "Development Status :: 3 - Alpha",
             "Intended Audience :: Developers",
-            "License :: OSI Approved :: MIT License",
+            'License :: OSI Approved :: Apache Software License',
             "Operating System :: OS Independent",
             "Programming Language :: Python :: 2",
             "Programming Language :: Python :: 3",
