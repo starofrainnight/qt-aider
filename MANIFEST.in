@@ -1,6 +1,5 @@
 include *.rst
 include LICENSE
-include rabird_bootstrap.py
 
 recursive-include tests *
 recursive-exclude * __pycache__
