@@ -80,7 +80,7 @@ def i18n_update():
         if not os.path.exists(pyside_lupdate_path):
             pyside_lupdate_path = "pyside-lupdate"
 
-        i18n_update_command = "\"%s\" %s" % (
+        i18n_update_command = "\"%s\" -verbose %s" % (
             pyside_lupdate_path, project_file_name)
         print(i18n_update_command)
         os.system(i18n_update_command)
