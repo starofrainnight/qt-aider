@@ -12,6 +12,7 @@ import PySide
 import sys
 import io
 
+
 def unix_normpath(path):
     return os.path.normpath(path).replace("\\", "/")
 
@@ -22,6 +23,12 @@ def i18n_update():
     # Get all ui files
     all_py_files = []
     all_ui_files = []
+    all_ts_files = []
+
+    default_ts_content = r"""<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS><TS version="1.1">
+</TS>
+"""
 
     for root, dirs, files in os.walk(os.curdir):
         for afile in files:
@@ -34,22 +41,14 @@ def i18n_update():
                 all_py_files.append(afile_path)
             elif fnmatch.fnmatch(afile, "*.ui"):
                 all_ui_files.append(afile_path)
+            elif fnmatch.fnmatch(afile, "*.ts"):
+                if os.path.exists(afile_path):
+                    statinfo = os.stat(afile_path)
+                    if statinfo.st_size <= 0:
+                        with io.open(afile_path, "wb") as afile:
+                            afile.write(default_ts_content.encode("utf-8"))
 
-    # Get all translation files
-    all_ts_files = []
-
-    default_ts_content = r"""<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
-</TS>
-"""
-    for ts_file in glob.glob("./i18n/*.ts"):
-        if os.path.exists(ts_file):
-            statinfo = os.stat(ts_file)
-            if statinfo.st_size <= 0:
-                with io.open(ts_file, "wb") as afile:
-                    afile.write(default_ts_content.encode("utf-8"))
-
-        all_ts_files.append(unix_normpath(ts_file))
+                all_ts_files.append(unix_normpath(afile_path))
 
     # Generate project file
     with io.open(project_file_name, "wb") as project_file:
@@ -59,9 +58,9 @@ def i18n_update():
             content += "\t%s \\\n" % py_file
         content += "\n"
 
-        content += "TRANSLATIONS = \\\n";
+        content += "TRANSLATIONS = \\\n"
         for ts_file in all_ts_files:
-            content += "\t%s \\\n" % ts_file;
+            content += "\t%s \\\n" % ts_file
         content += "\n"
 
         content += "FORMS    = \\\n"
@@ -74,7 +73,8 @@ def i18n_update():
         # Really update i18n
         pyside_dir = os.path.dirname(PySide.__file__)
         if sys.platform == "win32":
-            pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate.exe")
+            pyside_lupdate_path = os.path.join(
+                pyside_dir, "pyside-lupdate.exe")
         else:
             pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate")
         if not os.path.exists(pyside_lupdate_path):
@@ -84,6 +84,6 @@ def i18n_update():
             pyside_lupdate_path, project_file_name)
         print(i18n_update_command)
         os.system(i18n_update_command)
-        
+
     # After all we clear the temporary project file
     os.remove(project_file_name)
