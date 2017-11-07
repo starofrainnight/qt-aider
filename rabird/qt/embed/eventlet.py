@@ -5,30 +5,30 @@ from eventlet import hubs
 from qtpy.QtCore import QTimer
 
 
-def get_min_timer_clock():
+def getMinTimerClock():
     hub = hubs.get_hub()
 
-    current_clock = hub.clock()
-    default_min_clock = 3600
-    min_clock = default_min_clock
-    for scheduled_clock, _ in hub.timers:
-        delta_clock = scheduled_clock - current_clock
-        if delta_clock < 0.0:
+    currentClock = hub.clock()
+    defaultMinClock = 3600
+    minClock = defaultMinClock
+    for scheduledClock, _ in hub.timers:
+        deltaClock = scheduledClock - currentClock
+        if deltaClock < 0.0:
             continue
 
-        if delta_clock < min_clock:
-            min_clock = delta_clock
+        if deltaClock < minClock:
+            minClock = deltaClock
 
     # We run time for each 100ms if don't have any
-    if min_clock == default_min_clock:
-        min_clock = 0.1
+    if minClock == defaultMinClock:
+        minClock = 0.1
 
-    return min_clock
+    return minClock
 
 
 def _timerOnTimeout(timer):
     eventlet.sleep(0)
-    timer.setInterval(get_min_timer_clock() * 1000)
+    timer.setInterval(getMinTimerClock() * 1000)
     timer.start()
 
 
