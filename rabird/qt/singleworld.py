@@ -1,11 +1,11 @@
 import functools
 import struct
-from PySide.QtCore import Signal
-from PySide.QtCore import QObject
-from PySide.QtCore import QSharedMemory
-from PySide.QtCore import QSystemSemaphore
-from PySide.QtNetwork import QLocalServer
-from PySide.QtNetwork import QLocalSocket
+from qtpy.QtCore import Signal
+from qtpy.QtCore import QObject
+from qtpy.QtCore import QSharedMemory
+from qtpy.QtCore import QSystemSemaphore
+from qtpy.QtNetwork import QLocalServer
+from qtpy.QtNetwork import QLocalSocket
 
 
 class SingleWorld(QObject):
@@ -28,7 +28,7 @@ class SingleWorld(QObject):
     receivedMessage = Signal(bytes)
 
     def __init__(self, name, parent=None):
-        super().__init__(self, parent)
+        super().__init__(parent)
         self._name = name
         self._mode = self.Server
         self._sharedMemory = QSharedMemory(self._name)
