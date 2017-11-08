@@ -2,7 +2,7 @@
 
 import signal
 import logging
-from . import embed
+from . import eventlet as rqeventlet
 
 
 class InitMixin(object):
@@ -19,7 +19,7 @@ class InitMixin(object):
         signal.signal(signal.SIGINT, signal.SIG_DFL)
 
         # Embed eventlet
-        embed.embedEventlet(self)
+        rqeventlet.embed(self)
 
         # FIXME: Just use to keep translators references for avoid they be
         # deleted at runtime.
