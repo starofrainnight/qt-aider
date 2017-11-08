@@ -30,6 +30,7 @@ class InitMixin(object):
         Override installTranslator() of QCoreApplication, so the translator's
         references won't missing.
         """
+
         self._translators.append(translator)
         return super().installTranslator(translator)
 

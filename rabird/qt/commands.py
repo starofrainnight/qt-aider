@@ -8,9 +8,9 @@ This is a script that update i18n recursively in current folder.
 import os.path
 import glob
 import fnmatch
-import PySide
 import sys
 import io
+from rabird.qt.utils import getToolPath
 
 
 def unix_normpath(path):
@@ -71,17 +71,10 @@ def i18n_update():
         project_file.close()
 
         # Really update i18n
-        pyside_dir = os.path.dirname(PySide.__file__)
-        if sys.platform == "win32":
-            pyside_lupdate_path = os.path.join(
-                pyside_dir, "pyside-lupdate.exe")
-        else:
-            pyside_lupdate_path = os.path.join(pyside_dir, "pyside-lupdate")
-        if not os.path.exists(pyside_lupdate_path):
-            pyside_lupdate_path = "pyside-lupdate"
+        lupdate_path = getToolPath("lupdate")
 
         i18n_update_command = "\"%s\" -verbose %s" % (
-            pyside_lupdate_path, project_file_name)
+            lupdate_path, project_file_name)
         print(i18n_update_command)
         os.system(i18n_update_command)
 

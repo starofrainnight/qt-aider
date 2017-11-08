@@ -4,6 +4,7 @@ import inspect
 import glob
 import tempfile
 import xml.etree.ElementTree as etree
+from rabird.qt.utils import getToolPath
 
 
 def auto_compile_uis(ui_dir):
@@ -32,8 +33,9 @@ def auto_compile_uis(ui_dir):
             temp_ui_file.close()
 
         compiled_ui_path = os.path.join(ui_dir, "Ui_%s.py" % ui_name)
-        compie_command = "pyside-uic %s -o %s" % (
-            temp_ui_file_path, compiled_ui_path)
+        uic_path = getToolPath("uic")
+        compie_command = "%s %s -o %s" % (
+            uic_path, temp_ui_file_path, compiled_ui_path)
 
         # Only compile newer files
         if ((compiled_ui_path is not None) and
