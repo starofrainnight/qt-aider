@@ -1,8 +1,10 @@
 
 import eventlet
 import functools
+import traceback
 from eventlet import hubs
 from qtpy.QtCore import QTimer
+from decorator import decorator
 
 
 def getMinTimerClock():
@@ -42,3 +44,18 @@ def embed(aQObject):
     timer.start()
 
     aQObject.setProperty(tag, timer)
+
+
+@decorator
+def greenthread(func, *args, **kw):
+    """
+    If you raise exception inside greenthreads and the program crashed, try
+    apply this decorator on the function.
+    """
+
+    try:
+        return func(*args, **kw)
+    except:
+        print("Exception happen inside function : %s!" % func)
+        traceback.print_exc()
+        return None

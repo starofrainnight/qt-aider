@@ -13,6 +13,7 @@ long_description = (
 install_requires = [
     'rabird.core',
     'eventlet',
+    'decorator',
     'qtpy>=1.3.0',
 ]
 
