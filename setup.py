@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
+import sys
 from setuptools import setup, find_packages
+from packaging import version
 
 package_name = 'rabird.qt'
 
@@ -16,7 +18,13 @@ install_requires = [
     'decorator',
     'qtpy>=1.3.0',
     'click',
+    'whichcraft',
 ]
+
+if version.parse(sys.version) < version.parse('3.5'):
+    install_requires.append('PySide')
+else:
+    install_requires.append('PyQt5')
 
 tests_require = [
     # TODO: put package test requirements here
