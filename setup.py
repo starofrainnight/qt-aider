@@ -15,6 +15,7 @@ install_requires = [
     'eventlet',
     'decorator',
     'qtpy>=1.3.0',
+    'click',
 ]
 
 tests_require = [
