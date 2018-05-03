@@ -2,7 +2,6 @@
 
 import sys
 from setuptools import setup, find_packages
-from packaging import version
 
 package_name = 'rabird.qt'
 
@@ -21,7 +20,9 @@ install_requires = [
     'whichcraft',
 ]
 
-if version.parse(sys.version) < version.parse('3.5'):
+if ((sys.version_info[0] < 3) or
+        ((sys.version_info[0] == 3) and (sys.version_info[1] < 5))):
+    # Install PySide when versions below 3.5 (2.7 ~ 3.4)
     install_requires.append('PySide')
 else:
     install_requires.append('PyQt5')
