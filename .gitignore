@@ -68,3 +68,6 @@ preprocessed/
 
 # VSCode files
 .vscode
+
+# Ignore mypy stuffs
+.mypy_cache/
