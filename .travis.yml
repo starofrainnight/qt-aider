@@ -14,8 +14,8 @@ matrix:
 install:
   - python -m pip install -U pip
   - python -m pip install -U tox
-  - sudo python -m pip install -U click
-  - sudo python ./ci/install-qt-packages.py ${TRAVIS_PYTHON_VERSION}
+  - python -m pip install -U click
+  - python ./ci/install-qt-packages.py ${TRAVIS_PYTHON_VERSION}
 
 script:
   - tox -e ${TOXENV}
