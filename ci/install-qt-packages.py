@@ -13,10 +13,8 @@ def main(python_version):
 
     python_version = LooseVersion(python_version)
     if sys.platform.startswith('linux'):
-        if python_version < LooseVersion('3.0'):
-            os.system('apt-get install -y python-pyside')
-        else:
-            os.system('apt-get install -y python3-pyside')
+        # Install prebuilded pyside from qt.io
+        os.system('%s -m pip install --index-url=http://download.qt.io/snapshots/ci/pyside/5.9/latest/ pyside2 --trusted-host download.qt.io' % sys.executable)
     elif sys.platform.startswith('win32'):
         if python_version < LooseVersion('3.5'):
             os.system('%s -m pip install PySide' % sys.executable)
