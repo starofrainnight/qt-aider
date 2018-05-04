@@ -13,7 +13,10 @@ def main(python_version):
 
     python_version = LooseVersion(python_version)
     if sys.platform.startswith('linux'):
-        os.system('apt-get install -y python-pyside')
+        if python_version < LooseVersion('3.0'):
+            os.system('apt-get install -y python-pyside')
+        else:
+            os.system('apt-get install -y python3-pyside')
     elif sys.platform.startswith('win32'):
         if python_version < LooseVersion('3.5'):
             os.system('%s -m pip install PySide' % sys.executable)
