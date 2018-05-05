@@ -3,19 +3,23 @@ language: python
 matrix:
   include:
     - python: 3.4
-      env: TOXENV=py34
+      env:
+        - TOXENV=py34
+        - TOX_PYTHON_VERSION=${TRAVIS_PYTHON_VERSION}
 
     - python: 3.5
-      env: TOXENV=py35
+      env:
+        - TOXENV=py35
+        - TOX_PYTHON_VERSION=${TRAVIS_PYTHON_VERSION}
 
     - python: 3.6
-      env: TOXENV=py36,mypy,flake8
+      env:
+        - TOXENV=py36,mypy,flake8
+        - TOX_PYTHON_VERSION=${TRAVIS_PYTHON_VERSION}
 
 install:
   - python -m pip install -U pip
   - python -m pip install -U tox
-  - python -m pip install -U click
-  - python ./ci/install-qt-packages.py ${TRAVIS_PYTHON_VERSION}
 
 script:
   - tox -e ${TOXENV}
