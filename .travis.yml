@@ -3,29 +3,26 @@ language: python
 matrix:
   include:
     - python: 3.5
-      env:
-        - TOXENV=py35
-        - TOX_PYTHON_VERSION=3.5
+      env: TOXENV=py35
 
     - python: 3.6
-      env:
-        - TOXENV=py36,mypy,flake8
-        - TOX_PYTHON_VERSION=3.6
+      env: TOXENV=py36,mypy,flake8
 
 install:
   - python -m pip install -U pip
   - python -m pip install -U tox
 
-script:
-  - tox -e ${TOXENV}
+script: tox
 
-deploy:
-  provider: pypi
-  distributions: sdist
-  user: starofrainnight
-  password:
-    secure: YjDv/gNxile89owN/Eai4KlAMPbgrbMv0txRwnD8Ue9NP9D6MsalIYSSivzGkn6gYMeX7sBKTKkdC1y1+Jxrl8FLzDNoZAk8Dr+BzbSwEwmx5jikmQJRyIWc63YO3k8Rd1Qim0CGtarHMyrdORoAypHe9/g21aX+iDKdkHoY4QjqdvmGzlhzCtkmD+vX1WzlChP8z28WPtAX6tq+CyodUgMVdG8Hq/+y9CK9od9NKTlXK16dNkho59xisM0LHm6aYXGMBIbJFHq1qFuWyvV9iKjnAJGW3CDe/twZVcZ+q9aQ2rJ17/Ba+4Z2ahiTl450T/60KNPMYs/PwoOa2C/Wod4i/cvhurqniANUed1JY3A7Z1rtDvS6J6HZeuPBRFv+E9qiPyapkhrsfs0tVsHDVrenuzc+ADdVCLgIQ0peypFx6LUAtUECYcpewa+CGzLFOdPcUMdPer79ZdssFWlXIXHWIBGmP6a87dlJBqwqFnpI+st2rlvPFLKx/m1hleAYyxQN4pM9ipTfZAXyT+qVPMWX2mOZmrFmE3xFGlfbiIjrJy9ZJERYohiPp7DSd8r6tCV5jCK0T6WeqzD+IRruJXoPkcopFakHayIHGWue69ZTlhu8rrgtwKuBiLqTj5F2ZgZBuU8m/QqO1oesdhIxH5+C395sme3y+ikVJZ2sOgM=
-  on:
-    tags: true
-    repo: starofrainnight/rabird.qt
-    python: 3.6
+# After you create the Github repo and add it to Travis, predefine
+# TWINE_USERNAME and TWINE_PASSWORD environment variables in your travis-ci
+# project settings, so that twine will access them without place the private
+# account informations in this travis configuration file.
+after_success:
+  - |
+    # Only deploy on python 3.6 and tag version
+    if [ -n "${TRAVIS_TAG}" ] && [ "${TRAVIS_PYTHON_VERSION}" == "3.6" ] ; then
+      python -m pip install twine
+      python setup.py sdist --formats=zip
+      twine upload dist/*
+    fi
