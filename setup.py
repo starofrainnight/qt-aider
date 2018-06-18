@@ -18,6 +18,7 @@ install_requires = [
     'qtpy>=1.3.0',
     'click',
     'whichcraft',
+    'install-qt-binding',
 ]
 
 tests_require = [
