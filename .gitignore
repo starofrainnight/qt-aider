@@ -71,3 +71,6 @@ preprocessed/
 
 # Ignore mypy stuffs
 .mypy_cache/
+
+# Ignore pytest cache
+.pytest_cache/
