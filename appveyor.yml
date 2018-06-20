@@ -33,9 +33,6 @@ install:
   - ECHO "Filesystem root:"
   - ps: "ls \"C:/\""
 
-  - ECHO "Installed SDKs:"
-  - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
-
   - "IF NOT %PLATFORM%*==x86* SET PYTHON=%PYTHON%-%PLATFORM%"
 
   # Install Python (from the official .msi of http://python.org) and pip when
