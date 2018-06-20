@@ -1,27 +1,23 @@
+clone_depth: 2
+
+platform:
+  - x86
+  - x64
+
 environment:
   matrix:
     # Pre-installed Python versions, which Appveyor may upgrade to
     # a later point release.
     # See: http://www.appveyor.com/docs/installed-software#python
 
-    - PYTHON: "C:\\Python35"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5.x"
-      PYTHON_ARCH: "32"
       TOXENV: "py35"
 
-    - PYTHON: "C:\\Python35-x64"
-      PYTHON_VERSION: "3.5.x"
-      PYTHON_ARCH: "64"
-      TOXENV: "py35"
-
-    - PYTHON: "C:\\Python36"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      PYTHON: "C:\\Python36"
       PYTHON_VERSION: "3.6.x"
-      PYTHON_ARCH: "32"
-      TOXENV: "py36"
-
-    - PYTHON: "C:\\Python36-x64"
-      PYTHON_VERSION: "3.6.x"
-      PYTHON_ARCH: "64"
       TOXENV: "py36"
 
 install:
@@ -39,6 +35,8 @@ install:
 
   - ECHO "Installed SDKs:"
   - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
+
+  - "IF NOT %PLATFORM%*==x86* SET PYTHON=%PYTHON%-%PLATFORM%"
 
   # Install Python (from the official .msi of http://python.org) and pip when
   # not already installed.
@@ -78,5 +76,5 @@ artifacts:
 
 # on_success:
 #   # Only upload when python 3.6.x and arch 32 on tags
-#   - ps: "if (($env:APPVEYOR_REPO_TAG -eq 'true') -and ($env:PYTHON_VERSION -eq '3.6.x') -and ($env:PYTHON_ARCH -eq '32')) { pip install twine; twine upload dist\\* }"
+#   - ps: "if (($env:APPVEYOR_REPO_TAG -eq 'true') -and ($env:PYTHON_VERSION -eq '3.6.x') -and ($env:PLATFORM -eq 'x86')) { pip install twine; twine upload dist\\* }"
 
