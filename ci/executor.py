@@ -48,11 +48,20 @@ def test(env):
 
 
 @main.command()
-def deploy():
+def pack():
+    """Build distructbution
+    """
+
+    run_path("setup.py sdist --formats=zip")
+
+
+@main.command()
+@click.pass_context
+def deploy(ctx):
     """Deploy this project"""
 
+    ctx.invoke(pack)
     run_module("pip install twine")
-    run_path("setup.py sdist --formats=zip")
     run_module("twine upload dist/*")
 
 
