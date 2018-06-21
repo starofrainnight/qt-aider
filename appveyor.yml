@@ -13,12 +13,10 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5.x"
-      TOXENV: "py35"
 
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       PYTHON: "C:\\Python36"
       PYTHON_VERSION: "3.6.x"
-      TOXENV: "py36"
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
