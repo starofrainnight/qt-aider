@@ -51,20 +51,23 @@ install:
   # Upgrade to the latest version of pip to avoid it displaying warnings
   # about it being out of date.
   - "python -m pip install -U pip"
-  - "pip install wheel"
+  - "python -m pip install -U setuptools"
+  - "python -m pip install wheel"
 
   # Prepare test utility
-  - "pip install tox"
+  - "python -m pip install click"
 
 build: off
 
 test_script:
   # Run the project tests
-  - "tox"
+  # Syntax check
+  # - ps: "if (($env:PYTHON_VERSION -eq '3.6.x') -and ($env:PLATFORM -eq 'x64')) { python ./ci/executor.py test -e mypy -e flake8 }"
+  - "python ./ci/executor.py test"
 
 after_test:
   # If tests are successful, create binary packages for the project.
-  - "python setup.py sdist"
+  - "python ./ci/executor.py deploy"
   - ps: "ls dist"
 
 artifacts:
