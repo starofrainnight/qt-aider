@@ -81,8 +81,9 @@ class SingleWorld(QObject):
         while self._server.hasPendingConnections():
             localSocket = self._server.nextPendingConnection()
             self._localSockets[localSocket] = b""
-            localSocket.readyRead.connect(functools.partial(
-                self._onLocalSocketReadyRead, localSocket))
+            localSocket.readyRead.connect(
+                functools.partial(self._onLocalSocketReadyRead, localSocket)
+            )
 
     def start(self):
         # Ensure we run only one application
@@ -104,7 +105,8 @@ class SingleWorld(QObject):
             self._systemSemaphore.acquire()
             try:
                 isAnotherRunning = not self._sharedMemory.create(
-                    1, QSharedMemory.ReadWrite)
+                    1, QSharedMemory.ReadWrite
+                )
             finally:
                 self._systemSemaphore.release()
 
@@ -133,7 +135,8 @@ class SingleWorld(QObject):
                 self._server.removeServer(self._name)
                 if not self._server.listen(self._name):
                     raise RuntimeError(
-                        "Local server failed to listen on '%s'" % self._name)
+                        "Local server failed to listen on '%s'" % self._name
+                    )
         else:
             # Detach immediately if create failed.
             #
@@ -148,6 +151,6 @@ class SingleWorld(QObject):
 
     def sendMessage(self, message):
         # Only accept bytes message
-        assert(type(message) == bytes)
+        assert type(message) == bytes
         data = struct.pack("@I%ss" % len(message), len(message), message)
         self._client.write(data)

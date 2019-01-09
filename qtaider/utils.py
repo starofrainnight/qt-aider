@@ -10,37 +10,29 @@ def getToolPath(name):
     if qtpy.API in qtpy.PYQT5_API:
         import PyQt5 as qtmodule
 
-        tools = {
-            'uic': 'pyuic5',
-            'rcc': 'pyrcc5',
-            'lupdate': 'pylupdate5',
-        }
+        tools = {"uic": "pyuic5", "rcc": "pyrcc5", "lupdate": "pylupdate5"}
 
     elif qtpy.API in qtpy.PYSIDE2_API:
         import PySide2 as qtmodule
 
         tools = {
-            'uic': 'pyside-uic',
-            'rcc': 'pyside-rcc',
-            'lupdate': 'pyside-lupdate',
+            "uic": "pyside-uic",
+            "rcc": "pyside-rcc",
+            "lupdate": "pyside-lupdate",
         }
 
     elif qtpy.API in qtpy.PYQT4_API:
         import PyQt4 as qtmodule
 
-        tools = {
-            'uic': 'pyuic4',
-            'rcc': 'pyrcc4',
-            'lupdate': 'pylupdate4',
-        }
+        tools = {"uic": "pyuic4", "rcc": "pyrcc4", "lupdate": "pylupdate4"}
 
     elif qtpy.API in qtpy.PYSIDE_API:
         import PySide as qtmodule
 
         tools = {
-            'uic': 'pyside-uic',
-            'rcc': 'pyside-rcc',
-            'lupdate': 'pyside-lupdate',
+            "uic": "pyside-uic",
+            "rcc": "pyside-rcc",
+            "lupdate": "pyside-lupdate",
         }
 
     suffixs = [""]
