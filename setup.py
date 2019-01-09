@@ -40,11 +40,7 @@ setup(
     author_email="starofrainnight@gmail.com",
     url="https://github.com/starofrainnight/qt-aider",
     packages=find_packages(),
-    entry_points={
-        "console_scripts": [
-            "qt-aider-i18n-update=rabird.qt.commands:i18n_update"
-        ]
-    },
+    entry_points={"console_scripts": ["qt-aider=qtaider.__main__:main"]},
     include_package_data=True,
     install_requires=install_requires,
     license="Apache Software License",
