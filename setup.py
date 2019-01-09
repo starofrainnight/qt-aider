@@ -33,7 +33,7 @@ tests_requires = [
 
 setup(
     name="qt-aider",
-    version="0.2.7",
+    version="version='0.3.0'",
     description="An extension library for Qt library",
     long_description=long_description,
     author="Hong-She Liang",
