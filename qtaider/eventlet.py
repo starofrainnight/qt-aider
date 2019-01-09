@@ -54,7 +54,7 @@ def greenthread(func, *args, **kw):
 
     try:
         return func(*args, **kw)
-    except:
+    except:  # noqa
         print("Exception happen inside function : %s!" % func)
         traceback.print_exc()
         return None

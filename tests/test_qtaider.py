@@ -5,11 +5,6 @@
 
 import pytest
 
-from click.testing import CliRunner
-
-from qtaider import qtaider
-from qtaider.__main__ import main
-
 
 @pytest.fixture
 def response():

@@ -4,8 +4,6 @@
 """Console script for qt-aider."""
 
 import io
-import sys
-import glob
 import click
 import os.path
 import fnmatch

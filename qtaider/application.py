@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import signal
-import logging
 from . import eventlet as rqeventlet
 
 
