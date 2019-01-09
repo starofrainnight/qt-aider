@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install rabird.qt, run this command in your terminal:
+To install qt-aider, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install rabird.qt
+    $ pip install qt-aider
 
-This is the preferred method to install rabird.qt, as it will always install the most recent stable release.
+This is the preferred method to install qt-aider, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for rabird.qt can be downloaded from the `Github repo`_.
+The sources for qt-aider can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/starofrainnight/rabird.qt
+    $ git clone git://github.com/starofrainnight/qt-aider
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl  -OL https://github.com/starofrainnight/rabird.qt/tarball/master
+    $ curl  -OL https://github.com/starofrainnight/qt-aider/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/starofrainnight/rabird.qt
-.. _tarball: https://github.com/starofrainnight/rabird.qt/tarball/master
+.. _Github repo: https://github.com/starofrainnight/qt-aider
+.. _tarball: https://github.com/starofrainnight/qt-aider/tarball/master

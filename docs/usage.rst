@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use rabird.qt in a project::
+To use qt-aider in a project::
 
-    import rabird.qt
+    import qtaider

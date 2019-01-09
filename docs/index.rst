@@ -1,4 +1,4 @@
-Welcome to rabird.qt's documentation!
+Welcome to qt-aider's documentation!
 ======================================
 
 Contents:
@@ -9,6 +9,7 @@ Contents:
    readme
    installation
    usage
+   modules
    contributing
    authors
    history

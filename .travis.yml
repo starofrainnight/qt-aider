@@ -1,17 +1,21 @@
+# Config file for automatic testing at travis-ci.org
 language: python
 
 matrix:
   include:
+    # - python: 2.7
+    - python: 3.4
     - python: 3.5
     - python: 3.6
 
+# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
   - python -m pip install -U pip
   - python -m pip install -U setuptools
-
   # Prepare test utility
-  - "python -m pip install click"
+  - python -m pip install click
 
+# command to run tests, e.g. python setup.py test
 script:
   - |
     # Only run mypy and flake8 check with python 3.6

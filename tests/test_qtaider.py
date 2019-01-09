@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-Tests for `rabird.qt` module.
-"""
+"""Tests for `qt-aider` package."""
 
 import pytest
 
-from contextlib import contextmanager
 from click.testing import CliRunner
 
-import rabird.qt
+from qtaider import qtaider
+from qtaider.__main__ import main
 
 
 @pytest.fixture

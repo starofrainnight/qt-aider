@@ -1,11 +1,18 @@
+# -*- coding: utf-8 -*-
+
+"""Top-level package for qt-aider."""
+
+__author__ = """Hong-She Liang"""
+__email__ = 'starofrainnight@gmail.com'
+__version__ = '0.2.6'
+
 import os.path
 import importlib
 import inspect
 import glob
 import tempfile
 import xml.etree.ElementTree as etree
-from rabird.qt.utils import getToolPath
-
+from .utils import getToolPath
 
 def auto_compile_uis(ui_dir):
     '''
