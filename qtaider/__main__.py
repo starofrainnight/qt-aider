@@ -9,7 +9,7 @@ import glob
 import click
 import os.path
 import fnmatch
-from rabird.qt.utils import getToolPath
+from .utils import getToolPath
 
 
 def unix_normpath(path):

@@ -75,10 +75,10 @@ def import_uis():
     __init__.py:
 
     @code
-    import rabird.qt
+    import qtaider
 
     # This method will import all UI's located in this module's directory.
-    rabird.qt.import_uis()
+    qtaider.import_uis()
     @endcode
     """
     suffixs = ["pyo", "pyc", "py"]
